@@ -1,0 +1,198 @@
+﻿@model IEnumerable<SchoolERP.Models.Teacher.SubjectMark>
+
+@{
+    ViewBag.Title = "BroadSheet";
+    Layout = "~/Views/Shared/Teacher.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+
+    <style>
+        .pagination {
+            display: inline-block;
+        }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+
+                .pagination a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+    </style>
+
+    <div class="page-breadcrumb">
+
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Broadsheet</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Broadsheet </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title m-b-0"><i class="fas fa-users"></i> Broadsheet </h5>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <a href="@Url.Action("CreateStudent", "Student")" class="btn btn btn-dark">
+                                            <i class="fas fa-plus-square"></i>
+                                            <span>
+                                                <strong>Create</strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            @using (Html.BeginForm("StudentList", "TeacherClass", FormMethod.Post))
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Student Name</label>
+                                            @Html.TextBox("searchtxt", null, new { @class = "form-control", @placeholder = "Student Name" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn btn-dark">
+                                                <i class="fas fa-search"></i>  Query Table
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Term)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SessionID)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ClassLevelname)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Subjectname)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AdmissionNo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstCA)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SecondCA)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ThirdCA)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Exams)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Total)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Term)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SessionID)
+                                        </td>
+                                      
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ClassLevelname)
+                                        </td>
+                                    
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Subjectname)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StudentName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AdmissionNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FirstCA)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SecondCA)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ThirdCA)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Exams)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Total)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
